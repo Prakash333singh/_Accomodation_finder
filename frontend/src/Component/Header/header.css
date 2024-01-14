@@ -39,7 +39,7 @@
     z-index: 999;
 }
 
-
+ 
 /* responsiveness */
 
 @media only screen and (max-width:992px) {
@@ -54,12 +54,13 @@
         left:0;
         background: rgba(0, 0, 0, 0.411);
         z-index: 999;
+        display:none;
     }
     .menu{
         position: absolute;
         top: 0;
-        left: 0;
-        width: calc(100%-75%);
+        right: 0;
+        width: calc(100% - 75%);
         height: 100%;
         background: #fff;
         flex-direction: column;
@@ -72,5 +73,14 @@
     }
     .mobile__menu{
         display: block;
+    }
+}
+
+@media only  screen and (max-width:768px) {
+    .logo img{
+        width: 45%;
+    }
+    .menu {
+        width:calc(100% -50%); 
     }
 }

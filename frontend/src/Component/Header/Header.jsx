@@ -22,6 +22,7 @@ const nav_links = [
 
 const Header = () => {
     const headerRef = useRef(null);
+    const menuRef = useRef(null);
     const navigate = useNavigate();
     const { user, dispatch } = useContext(AuthContext)
 
@@ -31,26 +32,26 @@ const Header = () => {
         navigate('/')
     }
 
-    useEffect(() => {
-        const stickyHeaderFunc = () => {
-            if (headerRef.current) { // Check if headerRef.current is not null
-                const { body, documentElement } = document;
 
-                if (body.scrollTop > 80 || documentElement.scrollTop > 80) {
-                    headerRef.current.classList.add('sticky__header');
-                } else {
-                    headerRef.current.classList.remove('sticky__header');
-                }
+    const stickyHeaderFunc = () => {
+        if (headerRef.current) { // Check if headerRef.current is not null
+            const { body, documentElement } = document;
+
+            if (body.scrollTop > 80 || documentElement.scrollTop > 80) {
+                headerRef.current.classList.add('sticky__header');
+            } else {
+                headerRef.current.classList.remove('sticky__header');
             }
-        };
+        }
+    };
 
-        window.addEventListener('scroll', stickyHeaderFunc);
+    useEffect(() => {
+        stickyHeaderFunc();
+        return window.removeEventListener('scroll', stickyHeaderFunc);
+    });
 
-        // Cleanup the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('scroll', stickyHeaderFunc);
-        };
-    }, [headerRef]);
+
+    const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
 
     return (
         <header className='header' ref={headerRef}>
@@ -65,7 +66,7 @@ const Header = () => {
                         {/* logo end*/}
 
                         {/* menu start*/}
-                        <div className='navigation'>
+                        <div className='navigation' ref={menuRef} onClick={toggleMenu}>
                             <ul className="menu d-flex align-items-center gap-5">
                                 {nav_links.map((item, index) => (
                                     <li className="nav__item" key={index}>
@@ -97,7 +98,7 @@ const Header = () => {
                                 }
 
                             </div>
-                            <span className='mobile__menu'>
+                            <span className='mobile__menu' onClick={toggleMenu}>
                                 <i class="ri-menu-line"></i>
                             </span>
 

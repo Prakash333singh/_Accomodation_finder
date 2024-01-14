@@ -1,8 +1,23 @@
 import Booking from "../models/Booking.js";
 
 //create new booking
+// export const createBooking = async (req, res) => {
+//   const newBooking = new Booking(req.body);
+//   try {
+//     const savedBooking = await newBooking.save();
+
+//     res.status(200).json({
+//       success: true,
+//       message: "Your tour is booked",
+//       data: savedBooking,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ sucess: true, message: "internal server error" });
+//   }
+// };
 export const createBooking = async (req, res) => {
   const newBooking = new Booking(req.body);
+
   try {
     const savedBooking = await newBooking.save();
 
@@ -12,7 +27,14 @@ export const createBooking = async (req, res) => {
       data: savedBooking,
     });
   } catch (error) {
-    res.status(500).json({ sucess: true, message: "internal server error" });
+    console.error(error); // Log the error for debugging purposes
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal server error",
+        error: error.message,
+      });
   }
 };
 
