@@ -1,6 +1,4 @@
-Certainly! Here's a structured README file for your `tour_management` project:
 
----
 
 # Tour Management
 
