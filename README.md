@@ -65,4 +65,3 @@ Tour Management is a comprehensive travel and tour platform designed to make tra
 
 ---
 
-Feel free to adjust the text as necessary to better fit your project's specifics and audience.
