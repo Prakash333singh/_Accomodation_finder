@@ -34,12 +34,17 @@ const Booking = ({ tour, avgRating }) => {
     //send data to the server
     const handleClick = async e => {
         e.preventDefault();
-        console.log(booking);
+
+        // Check if booking is defined and has values
+        if (!booking || Object.keys(booking).length === 0) {
+            return alert('Please provide booking details');
+        }
 
         try {
-            if (!user || user === undefined || user === null) {
+            if (!user) {
                 return alert('Please sign in');
             }
+
             const res = await fetch(`${BASE_URL}/booking`, {
                 method: 'post',
                 headers: {
@@ -47,20 +52,33 @@ const Booking = ({ tour, avgRating }) => {
                 },
                 credentials: 'include',
                 body: JSON.stringify(booking)
-            })
-            const result = await res.json()
+            });
+
+            const result = await res.json();
 
             if (!res.ok) {
-                return alert(result.message)
-            }
-            navigate("/thank-you");
-        } catch (err) {
-            alert(err.message)
-        }
+                // Check HTTP status code for unauthorized (401) or forbidden (403)
+                if (res.status === 401 || res.status === 403) {
+                    return alert('You are not authorized to perform this action. Please sign in again.');
+                }
 
-        // console.log(credentials);
-        // navigate("/thank-you");
+                // Check if result has a message field
+                if (result && result.message) {
+                    return alert(result.message);
+                } else {
+                    return alert('Something went wrong. Please try again.');
+                }
+            }
+
+            navigate("/thank-you");
+
+        } catch (err) {
+            // Display a user-friendly error message
+            alert('There was an error processing your request. Please try again later.');
+            console.error(err);
+        }
     };
+
 
     return (
         <div className='booking'>
