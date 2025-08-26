@@ -1,10 +1,10 @@
 
 
-# Tour Management
+# Accomodation_finder
 
 ## 1. Introduction
 
-Welcome to Tour Management, your gateway to unforgettable travel experiences! At Tour Management, we believe that every journey is an opportunity for discovery, relaxation, and creating lasting memories. Our platform is meticulously designed to cater to the modern traveler, offering a seamless blend of convenience, exploration, and personalized adventure. It's a platform for users to explore travel destinations, find tours, and seamlessly book their travel experiences.
+Welcome to Accommodation_finder, your gateway to unforgettable travel experiences! At Tour Management, we believe that every journey is an opportunity for discovery, relaxation, and creating lasting memories. Our platform is meticulously designed to cater to the modern traveler, offering a seamless blend of convenience, exploration, and personalized adventure. It's a platform for users to explore travel destinations, find tours, and seamlessly book their travel experiences.
 
 We empower users to discover new and exciting travel destinations effortlessly. With an intuitive interface built on React, navigating through our extensive collection of destinations becomes a visual delight.
 
